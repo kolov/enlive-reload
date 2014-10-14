@@ -4,7 +4,11 @@ Auto reload for enlive templates. Enlive offers support for autoreload, but is i
 
 ## Usage
 
-A ring handler wrapper that check for changed template files, add it nex to wrap-reload
+Add this to your dependencies:
+
+    [com.akolov.enlive-reload "0.1.0"]
+    
+Add the handler wrapper that checks for changed template files next to wrap-reload:
 
     (ring.middleware.reload/wrap-reload)
     (wrap-enlive-reload)
