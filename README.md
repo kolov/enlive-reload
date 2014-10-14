@@ -1,19 +1,15 @@
 # enlive-reload
 
-
-
-Auto reload for enlive templates.
+Auto reload for enlive templates. Enlive offers support for autoreload, but is is not usable on a Mac, see [more](http://kolov-it.com/automatic-reloading-enlive-templates/)
 
 ## Usage
 
-In your ring handler, next to 
+A ring handler wrapper that check for changed template files, add it nex to wrap-reload
 
     (ring.middleware.reload/wrap-reload)
-add
-
     (com.akolov.enlive_reload/wrap-enlive-reload)
-This will track all namespaces containing enlive templates. 
-Optionally, specify namespaces to watch:
+This will track all namespaces containing enlive templates. Optionally, specify namespaces to watch:
+
     (com.akolov.enlive_reload/wrap-enlive-reload 'myproject.templates)
 
 ## License
