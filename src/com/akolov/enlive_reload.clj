@@ -15,15 +15,14 @@
 (defn files-and-times-map [namespaces]
   (zipmap namespaces
           (map
-            (fn [ns] (let [files (dependent-files ns)
-                           times (map #(.lastModified %) files)]
-                       [files times]))
-            namespaces))
-
-  )
+            (fn [ns]
+              (let [files (dependent-files ns)
+                    times (map #(.lastModified %) files)]
+                [files times]))
+            namespaces)
+          ))
 
 (defn changed-namespaces [old new]
-  (println old new)
   (reduce (fn [acc [ns [new-files new-times]]]
             (let [[old-files old-times] (old ns)]
               (if (or (not= old-files new-files)
@@ -44,10 +43,10 @@
           Defaults to all namespaces having enlive templates"
   [handler & [options]]
   (let [namespaces (namespased-to-watch options)
-        ftm (atom (files-and-times-map namespaces))
-        ]
+        ftm (atom (files-and-times-map namespaces))]
     (fn [request]
       (let [current (files-and-times-map namespaces)]
         (doseq [ns (changed-namespaces @ftm current)]
           (require (.getName ns) :reload))
+        (reset! ftm current)
         (handler request)))))
