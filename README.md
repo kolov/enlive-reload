@@ -1,14 +1,25 @@
-# reload
+# enlive-reload
 
-A Clojure library designed to ... well, that part is up to you.
+
+
+Auto reload for enlive templates.
 
 ## Usage
 
-FIXME
+In your ring handler, next to 
+
+    (ring.middleware.reload/wrap-reload)
+add
+
+    (com.akolov.enlive_reload/wrap-enlive-reload)
+This will track all namespaces containing enlive templates. 
+Optionally, specify namespaces to watch:
+    (com.akolov.enlive_reload/wrap-enlive-reload 'myproject.templates)
 
 ## License
 
-Copyright © 2014 FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+
+

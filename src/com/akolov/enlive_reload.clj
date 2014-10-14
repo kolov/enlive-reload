@@ -44,13 +44,10 @@
           Defaults to all namespaces having enlive templates"
   [handler & [options]]
   (let [namespaces (namespased-to-watch options)
-
         ftm (atom (files-and-times-map namespaces))
         ]
     (fn [request]
-      (let [current (files-and-times-map namespaces)
-            ]
-
+      (let [current (files-and-times-map namespaces)]
         (doseq [ns (changed-namespaces @ftm current)]
           (require (.getName ns) :reload))
         (handler request)))))
