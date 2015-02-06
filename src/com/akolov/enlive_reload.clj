@@ -1,4 +1,6 @@
-(ns com.akolov.enlive-reload)
+(ns com.akolov.enlive-reload
+  (:require [clojure.tools.logging :as log])
+  )
 
 (defn namespaces-with-templates []
   (filter #(:net.cgrand.reload/deps (meta %)) (all-ns)))
@@ -47,6 +49,7 @@
     (fn [request]
       (let [current (files-and-times-map namespaces)]
         (doseq [ns (changed-namespaces @ftm current)]
+          (log/debug "enlive-reload detected change in " ns)
           (require (.getName ns) :reload))
         (reset! ftm current)
         (handler request)))))
