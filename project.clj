@@ -1,4 +1,4 @@
-(defproject com.akolov.enlive-reload "0.2.0-SNAPSHOT"
+(defproject com.akolov.enlive-reload "0.2.1"
             :description "autoreloading for enlive"
             :url "http://kolov-it.com/automatic-reloading-enlive-templates/"
             :license {:name "Eclipse Public License"
@@ -15,7 +15,4 @@
                              :plugins      [[lein-deps-tree "0.1.2"]
                                             [lein-midje "3.0.0"]
                                             [test2junit "1.0.1"]]}}
-            :repositories [
-                           ["snapshots" "http://nexus.akolov.com/content/repositories/snapshots"]
-                           ["releases" "http://nexus.akolov.com/content/repositories/releases"]]
             )
