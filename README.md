@@ -11,7 +11,7 @@ Add this to your dependencies:
 Add the handler wrapper that checks for changed template files next to wrap-reload:
 
     (ring.middleware.reload/wrap-reload)
-    (wrap-enlive-reload)
+    (wrap-enlive-reload/wrap-enlive-reload)
 This will track all namespaces containing enlive templates. Optionally, specify namespaces to watch:
 
     (wrap-enlive-reload 'myproject.templates)
